@@ -1,5 +1,5 @@
 export const environment = {
-  apiLocation: 'falgsc.eu.org',
+  apiLocation: 'iot.falgsc.eu.org',
   apiPort: '8080',
   kurentoPort: '443'
 };
