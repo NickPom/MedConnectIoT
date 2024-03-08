@@ -40,7 +40,7 @@ export class DeviceService {
 
   createDevice(device: Device) {
     const reqHeader = this.authService.getHeaderWithBearer();
-    console.log(device);
+
     return this.httpClient.put<any>("https://" + environment.apiLocation + ":" + environment.apiPort + '/createdevice', device,{
       headers: reqHeader,
       observe: 'response'
@@ -49,7 +49,7 @@ export class DeviceService {
 
   updateDevice(id_cambiato: number, id_persona:number, data_inizio:string, data_fine: string, id_device:number) {
     const reqHeader = this.authService.getHeaderWithBearer();
-    console.log('ok');
+
     if(Number(id_cambiato)==null){
       id_cambiato=Number(id_persona);
     }

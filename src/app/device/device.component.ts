@@ -22,7 +22,7 @@ export class DeviceComponent {
   device = new Device(0,'','','','', 0);
   success = false;
   fail = false;
-  displayedColumns = ['id_device','id_tipologia', 'nome','intervallo', 'editButton', 'deleteButton'];
+  displayedColumns = ['id_device','id_tipologia', 'nome','intervallo', 'editButton', 'cancel'];
   typeList: any;
   deviceList: any;
   pageSizeOptions = [5, 10, 25];
@@ -42,7 +42,6 @@ export class DeviceComponent {
       if (resp.status == 200) {
         this.typeList = resp.body;
 
-        console.log(resp.body);
       }
     });
     this.refreshList();
@@ -50,7 +49,7 @@ export class DeviceComponent {
 
       this.userService.getAllPatients().subscribe(resp => {
         this.patientList = resp.body;
-        console.log(this.patientList);
+
       });
 
       
@@ -74,9 +73,9 @@ export class DeviceComponent {
             this.deviceList = data.body;
   
             this.length= data.body.length;
-            console.log('LOGGGGG',this.length);
+
             this.dataSource = new MatTableDataSource(this.deviceList);
-            console.log(this.deviceList);
+
           }
         });
 
@@ -121,21 +120,17 @@ export class DeviceComponent {
   }
 
   modify(device: any) {
-    console.log('ENTRATO');
+
     this.deviceService.updateDevice(device.id_cambiato, device.id_persona, this.device.data_inizio, this.device.data_fine, device.id_device).subscribe(resp => {
       device.editable = false;
     this.editing = false;
     });
     
-    //this.refreshList();
+    this.refreshList();
        
   }
 
-  culo() {
-    console.log('ENTRATO');
-    
-       
-  }
+ 
 
   
   insert(device: any) {
@@ -206,7 +201,7 @@ export class DeviceComponent {
 
     this.deviceService.createDevice(this.device).subscribe({
       next:(resp) => {
-        console.log(resp.status);
+
               if (resp.status == 200) {
                 this.success=true;
               }

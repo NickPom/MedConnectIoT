@@ -129,7 +129,7 @@
                       <th mat-header-cell *matHeaderCellDef class="t-op">Tipo Device</th>
                       <td mat-cell *matCellDef="let device">
 
-                        <select [(ngModel)]="device.id_tipologia" placeholder="Selezione tipologia dispositivo" class="form-control" name="tipo" id="type" disabled="{{!device.editable}}">
+                        <select [(ngModel)]="device.id_tipologia" placeholder="Selezione tipologia dispositivo" class="form-control" name="tipo" id="type" disabled>
                           <option value="0"   selected disabled>Scegli tipologia dispositivo</option>
                           <option *ngFor="let type of typeList" value="{{type.ID}}">{{type.nome}}</option>
                          
@@ -193,19 +193,17 @@
                             <svg width="256px" height="256px" viewBox="0 0 24.00 24.00" xmlns="http://www.w3.org/2000/svg" fill="#000000" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.144"></g><g id="SVGRepo_iconCarrier"> <title></title> <g id="Complete"> <g data-name="add" id="add-2"> <g> <line fill="none" stroke="#0acce6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" x1="12" x2="12" y1="19" y2="5"></line> <line fill="none" stroke="#0acce6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" x1="5" x2="19" y1="12" y2="12"></line> </g> </g> </g> </g></svg>
                           </button>
                           
-                          <button class="control-button " *ngIf="device.editable && !device.isNew&& (device.data_inizio!==null && device.data_fine!==null && device.id_persona!==null)" (click)="culo()">
-                            p
-                            <!-- <svg class="done" *ngIf=device.editable xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                          <button class="control-button " *ngIf="device.editable && !device.isNew&& (device.data_inizio!==null && device.data_fine!==null && device.id_persona!==null)" (click)="modify(device)">
+                      
+                            <svg class="done" *ngIf=device.editable xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                               <path d="M0 0h24v24H0V0z" fill="none" />
                               <path
                                 d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9.29 16.29 5.7 12.7c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.59 7.59c-.38.39-1.02.39-1.41 0z" />
-                            </svg> -->
+                            </svg>
                           </button>
 
 
-                          <button class="control-button " *ngIf="device.isNew || device.editable" (click)="cancel(device)">
-                            <svg width="256px" height="256px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#e00000" stroke-width="2.4"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z" fill="#ff0000"></path> </g></svg>
-                          </button>
+                          
 
 
 
@@ -222,7 +220,18 @@
                         </td>
                         </ng-container>
                         </ng-container>
-                        <ng-container matColumnDef="deleteButton">
+                        <ng-container matColumnDef="cancel">
+                          <th mat-header-cell *matHeaderCellDef class="t-op">Annulla</th>
+                          <ng-container *matCellDef="let device">
+                            <td mat-cell>
+                              <button class="control-button " *ngIf="device.isNew || device.editable" (click)="cancel(device)">
+                                <svg  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#e00000" ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z" fill="#ff0000"></path> </g></svg>
+                              </button>
+                            </td>
+                      </ng-container>
+                    </ng-container>
+
+                        <!-- <ng-container matColumnDef="deleteButton">
                           <th mat-header-cell *matHeaderCellDef class="t-op">Elimina</th>
                           <ng-container *matCellDef="let device">
                             <td mat-cell>
@@ -235,7 +244,7 @@
                               </button>
                             </td>
                       </ng-container>
-                    </ng-container>
+                    </ng-container> -->
                     
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
