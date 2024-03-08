@@ -11,6 +11,8 @@ import { KurentoComponent } from "./kurento/kurento.component";
 import { GdprComponent } from './gdpr/gdpr.component';
 import { DataTakeoutComponent } from './data-takeout/data-takeout.component';
 
+import { DeviceComponent } from './device/device.component';
+
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
@@ -20,7 +22,9 @@ const routes: Routes = [
   { path: 'pocPJ/:visitId', component: VideocallPJComponent, canActivate: [AuthGuard]},
   { path: 'WebRTC/:visitId', component: WebRTCComponent, canActivate: [AuthGuard]},
   { path: 'kurento/:visitId', component: KurentoComponent, canActivate: [AuthGuard]},
-  { path: 'patient/:patientId', component: SpecificDocumentListComponent, canActivate: [AuthGuard]}
+  { path: 'patient/:patientId', component: SpecificDocumentListComponent, canActivate: [AuthGuard]},
+  { path: 'device', component: DeviceComponent, canActivate: [AuthGuard]},
+
 ];
 
 @NgModule({

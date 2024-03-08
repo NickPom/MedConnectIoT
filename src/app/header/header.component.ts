@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { UserService } from '../user/user.service';
 import { User } from '../user';
+import { NgbNav, NgbNavItem, NgbNavLink } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-header',
@@ -9,8 +10,11 @@ import { User } from '../user';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  isMenuCollapsed = true;
   user: User = new User('', '', '', 0, '');
   constructor(private authService: AuthService, private userService: UserService) {}
+
+
   ngOnInit() {
     this.userService.getUserData().subscribe(resp => {
       if(resp.status == 200) {

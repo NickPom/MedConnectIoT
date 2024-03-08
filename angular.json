@@ -98,10 +98,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "telemed:build:production"
+              "buildTarget": "telemed:build:production"
             },
             "development": {
-              "browserTarget": "telemed:build:development"
+              "buildTarget": "telemed:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -109,7 +109,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "telemed:build"
+            "buildTarget": "telemed:build"
           }
         },
         "test": {

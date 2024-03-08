@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
@@ -32,6 +32,12 @@ import { GdprComponent } from './gdpr/gdpr.component';
 import { DataTakeoutComponent } from './data-takeout/data-takeout.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NgbModule, NgbModal, NgbDatepickerModule, NgbCollapseModule, NgbNavModule  } from '@ng-bootstrap/ng-bootstrap';
+import { DeviceComponent } from './device/device.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MAT_DATE_LOCALE, provideNativeDateAdapter} from '@angular/material/core';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,9 +55,13 @@ import { MatDialogModule } from '@angular/material/dialog';
     KurentoComponent,
     GdprComponent,
     DataTakeoutComponent,
-    DialogComponent
+    DialogComponent,
+    DeviceComponent,
+
+
   ],
   imports: [
+    NgbCollapseModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -69,13 +79,19 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatCardModule,
     MatRadioModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    NgbModule,
+    NgbDatepickerModule,
+    NgbNavModule,
+    MatFormFieldModule, MatDatepickerModule,
+    ReactiveFormsModule
+
   ],
   exports: [
     MatTableModule,
     MatButtonModule
   ],
-  providers: [{ provide: MatPaginatorIntl, useValue: getItalianPaginatorIntl() }, {provide: LocationStrategy, useClass: HashLocationStrategy},],
+  providers: [{ provide: MatPaginatorIntl, useValue: getItalianPaginatorIntl() }, {provide: LocationStrategy, useClass: HashLocationStrategy},provideNativeDateAdapter(),{provide: MAT_DATE_LOCALE, useValue: 'it-IT'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
