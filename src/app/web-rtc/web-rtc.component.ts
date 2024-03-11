@@ -54,6 +54,7 @@ export class WebRTCComponent implements OnDestroy , OnInit{
   user: any;
   title = "";
   text = "";
+  visitID = this.activatedRoute.snapshot.params["visitId"];
 
 
 
@@ -87,7 +88,7 @@ export class WebRTCComponent implements OnDestroy , OnInit{
   }
 
   ngOnInit(): void {
-    this.room =this.activatedRoute.snapshot.params["visitId"];
+    this.room = this.visitID;
 
     this.userService.getUserData().subscribe(resp => {
       if(resp.status == 200) {
@@ -156,7 +157,7 @@ export class WebRTCComponent implements OnDestroy , OnInit{
     this.callService.stop();
     this.socket.disconnect();
     if(this.callStarted){
-      this.visitService.stopVisit(this.activatedRoute.snapshot.params["visitId"]).subscribe();
+      this.visitService.stopVisit(this.visitID).subscribe();
     }
 
     this.navOpen=true;
@@ -295,8 +296,8 @@ export class WebRTCComponent implements OnDestroy , OnInit{
       if (track.kind === StreamType.Video) {
         this.streamService.setStreamInNode(this.remoteStreamNode.nativeElement, track.track);
         this.callStarted =true;
-        this.visitService.updateJoinTime(this.activatedRoute.snapshot.params["visitId"]).subscribe();
-        this.visitService.startVisit(this.activatedRoute.snapshot.params["visitId"]).subscribe();
+        this.visitService.updateJoinTime(this.visitID).subscribe();
+        this.visitService.startVisit(this.visitID).subscribe();
       }
       if (track.kind === StreamType.Audio) {
         this.streamService.setStreamInNode(this.audioStreamNode.nativeElement, track.track, false);
@@ -352,7 +353,7 @@ export class WebRTCComponent implements OnDestroy , OnInit{
   }
 
   submit() {
-    this.documentService.saveDocument(this.title, this.text, this.activatedRoute.snapshot.params["visitId"]).subscribe(resp => {
+    this.documentService.saveDocument(this.title, this.text, this.visitID).subscribe(resp => {
       if (resp.status == 200) {
         window.open("https://" + environment.apiLocation + ":" + environment.apiPort + resp.body.uri, "_blank");
       }
