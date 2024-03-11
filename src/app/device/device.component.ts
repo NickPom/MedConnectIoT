@@ -129,6 +129,16 @@ export class DeviceComponent {
     this.refreshList();
        
   }
+  minDate: Date = new Date();
+  myFilter = (d: Date | null): boolean => {
+    const day = (d || new Date()).getDay();
+    // Prevent Saturday and Sunday from being selected.
+    if(d!==null){
+    return d >= this.minDate;
+    }else{
+      return false;
+    }
+  };
 
  
 
@@ -197,13 +207,15 @@ export class DeviceComponent {
    
   }
 
-  onSubmit() {
+  onSubmit(modal: any) {
 
     this.deviceService.createDevice(this.device).subscribe({
       next:(resp) => {
 
               if (resp.status == 200) {
                 this.success=true;
+                modal.close()
+                this.refreshList();
               }
       },error:(err) => {
           

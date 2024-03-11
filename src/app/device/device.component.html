@@ -18,7 +18,7 @@
                     </div>
                     <div class="modal-body">
                       
-                    <form (ngSubmit)="onSubmit()" #Deviceform="ngForm" class="needs-validation" novalidate >
+                    <form (ngSubmit)="onSubmit(modal)" #Deviceform="ngForm" class="needs-validation" novalidate >
                      
                       <div class="row gy-3">
             
@@ -154,8 +154,8 @@
                         <span *ngIf="!device.editable && device.data_fine!==null"> Fine:   {{ device.data_fine | date: 'dd/MM/yyyy' }}</span>
                         <mat-form-field *ngIf="device.editable" appearance="outline">
                         
-                          <mat-date-range-input disabled="{{!device.editable}}" [formGroup]="range" [rangePicker]="picker" required>
-                            <input matStartDate  value="{{device.data_inizio}}" formControlName="start" placeholder="Inizio">
+                          <mat-date-range-input [dateFilter]="myFilter"  disabled="{{!device.editable}}" [formGroup]="range" [rangePicker]="picker" required>
+                            <input   matStartDate  value="{{device.data_inizio}}" formControlName="start" placeholder="Inizio">
                             <input matEndDate value="{{device.data_fine}}"  formControlName="end" placeholder="Fine">
                           </mat-date-range-input>
             
