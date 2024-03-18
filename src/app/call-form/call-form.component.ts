@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { DocumentService } from '../document/document.service';
+import { io } from 'socket.io-client';
 @Component({
   selector: 'app-call-form',
   templateUrl: './call-form.component.html',
@@ -14,8 +15,19 @@ export class CallFormComponent {
   text = '';
   fileUplouded = false;
   selectedFile: File | undefined = undefined;
+  socket: any;
+  arduinoData: any;
 
-  constructor(private documentService: DocumentService) {}
+  constructor(private documentService: DocumentService)
+  {
+  }
+
+  ngOnInit(): void {
+    
+    
+  }
+
+  
 
   submit() {
     this.documentService.saveDocument(this.title, this.text, this.visitID).subscribe(resp => {

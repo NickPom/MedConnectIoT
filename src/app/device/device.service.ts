@@ -38,6 +38,16 @@ export class DeviceService {
    
   }
 
+  getIdDevicebyVisit(id_visita: Number){
+    const reqHeader = this.authService.getHeaderWithBearer();
+
+    return this.httpClient.get<any>("https://" + environment.apiLocation + ":" + environment.apiPort + '/getIdDevicebyVisit'+'?id_visita='+id_visita, {
+      headers: reqHeader,
+      observe: 'response'
+    });
+   
+  }
+
   createDevice(device: Device) {
     const reqHeader = this.authService.getHeaderWithBearer();
 
