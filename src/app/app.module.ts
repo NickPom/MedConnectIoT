@@ -36,62 +36,62 @@ import { NgbModule, NgbModal, NgbDatepickerModule, NgbCollapseModule, NgbNavModu
 import { DeviceComponent } from './device/device.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MAT_DATE_LOCALE, provideNativeDateAdapter} from '@angular/material/core';
+import { PulseComponent } from "./pulse/pulse.component";
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    SignupComponent,
-    ProfileComponent,
-    VideocallPJComponent,
-    VisitListComponent,
-    WebRTCComponent,
-    CallFormComponent,
-    DocumentListComponent,
-    PatientListComponent,
-    SpecificDocumentListComponent,
-    HeaderComponent,
-    KurentoComponent,
-    GdprComponent,
-    DataTakeoutComponent,
-    DialogComponent,
-    DeviceComponent,
-
-
-  ],
-  imports: [
-    NgbCollapseModule,
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    MatTableModule,
-    MatButtonModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatPaginatorModule,
-    BrowserAnimationsModule,
-    NgxWebrtcModule.forRoot({
-      userIdentifier: 'id',
-      debug: true
-    }),
-    MatCardModule,
-    MatRadioModule,
-    MatGridListModule,
-    MatDialogModule,
-    NgbModule,
-    NgbDatepickerModule,
-    NgbNavModule,
-    MatFormFieldModule, MatDatepickerModule,
-    ReactiveFormsModule
-
-  ],
-  exports: [
-    MatTableModule,
-    MatButtonModule
-  ],
-  providers: [{ provide: MatPaginatorIntl, useValue: getItalianPaginatorIntl() }, {provide: LocationStrategy, useClass: HashLocationStrategy},provideNativeDateAdapter(),{provide: MAT_DATE_LOCALE, useValue: 'it-IT'}],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        SignupComponent,
+        ProfileComponent,
+        VideocallPJComponent,
+        VisitListComponent,
+        WebRTCComponent,
+        CallFormComponent,
+        DocumentListComponent,
+        PatientListComponent,
+        SpecificDocumentListComponent,
+        HeaderComponent,
+        KurentoComponent,
+        GdprComponent,
+        DataTakeoutComponent,
+        DialogComponent,
+        DeviceComponent,
+        PulseComponent
+    ],
+    exports: [
+        MatTableModule,
+        MatButtonModule
+    ],
+    providers: [{ provide: MatPaginatorIntl, useValue: getItalianPaginatorIntl() }, { provide: LocationStrategy, useClass: HashLocationStrategy }, provideNativeDateAdapter(), { provide: MAT_DATE_LOCALE, useValue: 'it-IT' }],
+    bootstrap: [AppComponent],
+    imports: [
+        NgbCollapseModule,
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        MatTableModule,
+        MatButtonModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatPaginatorModule,
+        BrowserAnimationsModule,
+        NgxWebrtcModule.forRoot({
+            userIdentifier: 'id',
+            debug: true
+        }),
+        MatCardModule,
+        MatRadioModule,
+        MatGridListModule,
+        MatDialogModule,
+        NgbModule,
+        NgbDatepickerModule,
+        NgbNavModule,
+        MatFormFieldModule, MatDatepickerModule,
+        ReactiveFormsModule,
+        
+    ]
 })
 export class AppModule { }
