@@ -18,6 +18,9 @@ export class PulseComponent {
   axis_y: number = 75;
   last_BPM_TimeStamp = '';
   getBPMState=false;
+  getTempSignal: any;
+  getHumSignal: any;
+
 
   canvas: HTMLCanvasElement | any;
   context: CanvasRenderingContext2D | any;
@@ -56,7 +59,9 @@ export class PulseComponent {
     let obj = JSON.parse(data);
     console.log(obj);
     this.updateBPM(obj);
-    let getHeartbeatSignal = obj.heartbeat_Signal;
+     let getHeartbeatSignal = obj.heartbeat_Signal;
+     this.getTempSignal = obj.temperature_Signal;
+    this.getHumSignal = obj.humidity_Signal;
     let getBPMTimeStamp = obj.BPM_TimeStamp;
     let getBPMVal = obj.BPM_Val;
      this.getBPMState = obj.BPM_State;
